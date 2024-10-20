@@ -32,7 +32,7 @@ Additionally, I'll use it for Typescript type completion (I don't always remembe
 ### How to Run
 
 1. Clone the repo
-   > git clone
+   > git clone https://github.com/jakeevans00/url-shortener.git
 2. Install deps
    > cd url-shortener && npm i
 3. Seed the data
