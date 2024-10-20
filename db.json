@@ -11,12 +11,21 @@
     {
       "alias": "example3",
       "redirect": "https://example.com/3"
+    },
+    {
+      "alias": "http://localhost:3000/DOMi9Z",
+      "redirect": "https://www.jakevans.com"
+    },
+    {
+      "alias": "http://localhost:3000/wyHjgP",
+      "redirect": "https://www.jakevans.com"
+    },
+    {
+      "alias": "http://localhost:3000/LguDG1",
+      "redirect": "https://www.jakevans.com"
     }
   ],
   "unusedAliases": [
-    "DOMi9Z",
-    "wyHjgP",
-    "LguDG1",
     "CVgqjM",
     "e2DwXY",
     "l3tiAB",

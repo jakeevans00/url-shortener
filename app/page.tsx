@@ -5,11 +5,33 @@ import { useState } from "react";
 
 export default function Home() {
   const [urlText, setUrlText] = useState("");
+  const [errorText, setErrorText] = useState("");
+  const [alias, setAlias] = useState("");
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const rawText = urlText;
-    console.log(rawText);
+    setErrorText("");
+    setAlias("");
+
+    try {
+      const response = await fetch("/api/shorten", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ urlText }),
+      });
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "An error occured");
+      }
+
+      setAlias(data.shortUrl);
+    } catch (error) {
+      console.log(`Error shortening url, ${error}`);
+      setErrorText(
+        error instanceof Error ? error.message : "An unexpected error occured"
+      );
+    }
   };
 
   return (
@@ -33,7 +55,8 @@ export default function Home() {
               Shorten URL
             </button>
           </form>
-          {urlText && <p>{urlText}</p>}
+          {errorText && <p>{errorText}</p>}
+          {alias && <p>{alias}</p>}
         </div>
         <Footer />
       </div>
