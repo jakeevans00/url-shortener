@@ -26,12 +26,19 @@ export default function Home() {
       }
 
       setAlias(data.shortUrl);
+      setUrlText("");
     } catch (error) {
       console.log(`Error shortening url, ${error}`);
       setErrorText(
         error instanceof Error ? error.message : "An unexpected error occured"
       );
     }
+  };
+
+  const reset = () => {
+    setUrlText("");
+    setErrorText("");
+    setAlias("");
   };
 
   return (
@@ -45,6 +52,7 @@ export default function Home() {
               type="text"
               name=""
               id=""
+              value={urlText}
               onChange={(e) => {
                 setUrlText(e.target.value);
               }}
@@ -55,8 +63,25 @@ export default function Home() {
               Shorten URL
             </button>
           </form>
-          {errorText && <p>{errorText}</p>}
-          {alias && <p>{alias}</p>}
+          {errorText && (
+            <div className="text-center">
+              <p>Error 🚨 {errorText} </p>
+            </div>
+          )}
+          {alias && (
+            <div className="text-center">
+              <p>Congrats! Here&apos;s your shortened url 🎉</p>
+              <p className="text-violet-300">
+                <a href={alias}>{alias}</a>
+              </p>
+              <p
+                className="mt-4 text-center hover:text-violet-400 hover:cursor-pointer"
+                onClick={reset}
+              >
+                Convert another?
+              </p>
+            </div>
+          )}
         </div>
         <Footer />
       </div>
